@@ -1,4 +1,4 @@
-package io.javabrains.springlogin;
+package io.javabrains.springlogin.models;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 public class MyUserDetails  implements UserDetails {
     private String userName;
     private String password;
-    private String roles;
     private boolean active;
     private List<GrantedAuthority> authorities;
     public MyUserDetails(User user)

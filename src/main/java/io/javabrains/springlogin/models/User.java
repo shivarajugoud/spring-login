@@ -1,4 +1,4 @@
-package io.javabrains.springlogin;
+package io.javabrains.springlogin.models;
 
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
@@ -26,6 +26,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(name="userName")
     private String userName;
     private String password;
     private String roles;

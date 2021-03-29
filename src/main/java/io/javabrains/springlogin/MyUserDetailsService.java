@@ -1,5 +1,6 @@
 package io.javabrains.springlogin;
-
+import io.javabrains.springlogin.models.User;
+import io.javabrains.springlogin.models.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,8 +16,12 @@ public class MyUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException
     {
-       Optional<User> user = userRepository.findByUserName(userName);
-       user.orElseThrow(()->new UsernameNotFoundException("Not found : "+userName));
-       return user.map(MyUserDetails::new).get();
+        System.out.println(userName+" is userName");
+       Optional<User> user1 = userRepository.findByUserName(userName);
+       for(int i=0;i<10;i++)
+       System.out.println("reached HERE");
+       System.out.println(user1);
+       user1.orElseThrow(() -> new UsernameNotFoundException("Not found : "+userName));
+       return user1.map(MyUserDetails::new).get();
     }
 }

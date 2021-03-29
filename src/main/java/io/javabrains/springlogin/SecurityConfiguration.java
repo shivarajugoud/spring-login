@@ -2,6 +2,7 @@ package io.javabrains.springlogin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -26,6 +27,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user").hasAnyRole("ADMIN","USER")
                 .antMatchers("/").permitAll()
                 .and().formLogin();
+        http.csrf().disable()
+                .authorizeRequests().antMatchers(HttpMethod.OPTIONS,"*/").permitAll()
+                .antMatchers(HttpMethod.GET,"/login").permitAll();
     }
     @Bean
     public PasswordEncoder getPasswordEncoder()
